@@ -34,6 +34,9 @@ public class CubeEditor : MonoBehaviour
 		snapPos.z = Mathf.RoundToInt(transform.position.z / gridSize) * gridSize;
 		transform.position = snapPos;
 		// Actualiza el texto
-		textMesh.text = (snapPos.x / gridSize) + "," + (snapPos.z / gridSize);
+		string label = (snapPos.x / gridSize) + "," + (snapPos.z / gridSize);
+		textMesh.text = label;
+		// Actualiza el nombre del objeto
+		gameObject.name = "Cube " + label;
 	}
 }
