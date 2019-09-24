@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-	// Camino de bloques
-	[SerializeField] List<Block> path;
+	// Camino
+	[SerializeField] List<Waypoint> path;
 
 	void Start()
 	{
-		PrintWaypoints();
+		StartCoroutine(FollowPath());
+		print("Back to Start");
 	}
 
-	void Update()
+	// Sigue el camino
+	private IEnumerator FollowPath()
 	{
-
-	}
-
-	// Imprime el camino
-	private void PrintWaypoints()
-	{
-		foreach (Block waypoint in path)
+		print("Starting patrol...");
+		foreach (Waypoint waypoint in path)
 		{
-			print(waypoint.name);
+			print("Visiting " + waypoint.name);
+			transform.position = waypoint.transform.position;
+			yield return new WaitForSeconds(1f);
 		}
+		print("Ending patrol");
 	}
 }
