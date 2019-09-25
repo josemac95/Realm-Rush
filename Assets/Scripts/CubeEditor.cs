@@ -8,33 +8,38 @@ using UnityEngine;
 // Hace que cuando se pinche en el objeto se seleccione entero
 // Y no una de sus partes o caras
 [SelectionBase]
+// Requiere el componente del waypoint
+//[RequireComponent(typeof(Waypoint))]
 public class CubeEditor : MonoBehaviour
 {
-	// Posición ajustada
-	Vector3 snapPos;
+	// Waypoint
+	Waypoint waypoint;
 
-	// Tamaño de la cuadrícula de 1 a 20
-	[Range(1f, 20f)]
-	[SerializeField] float gridSize = 10f;
-
-	// Texto
-	TextMesh textMesh;
-
-	void Start()
+	void Awake()
 	{
-		// Obitiene el primer componente TextMesh en la jerarquía
-		textMesh = GetComponentInChildren<TextMesh>();
+		waypoint = GetComponent<Waypoint>();
 	}
 
 	void Update()
 	{
-		// Actualiza la posición
-		snapPos.x = Mathf.RoundToInt(transform.position.x / gridSize) * gridSize;
-		snapPos.y = 0f;
-		snapPos.z = Mathf.RoundToInt(transform.position.z / gridSize) * gridSize;
-		transform.position = snapPos;
+		SnapToGrid();
+		UpdateLabel();
+	}
+
+	// Actualiza la posición
+	private void SnapToGrid()
+	{
+		// Posición real
+		transform.position = new Vector3(waypoint.GridPos.x * waypoint.GridSize, 0f, waypoint.GridPos.y * waypoint.GridSize);
+	}
+
+	// Actualiza la etiqueta
+	private void UpdateLabel()
+	{
+		// Obitiene el primer componente TextMesh en la jerarquía
+		TextMesh textMesh = GetComponentInChildren<TextMesh>();
 		// Actualiza el texto
-		string label = (snapPos.x / gridSize) + "," + (snapPos.z / gridSize);
+		string label = waypoint.GridPos.x + "," + waypoint.GridPos.y;
 		textMesh.text = label;
 		// Actualiza el nombre del objeto
 		gameObject.name = "Cube " + label;
