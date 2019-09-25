@@ -10,19 +10,15 @@ public class EnemyMovement : MonoBehaviour
 	void Start()
 	{
 		StartCoroutine(FollowPath());
-		print("Back to Start");
 	}
 
 	// Sigue el camino
 	private IEnumerator FollowPath()
 	{
-		print("Starting patrol...");
 		foreach (Waypoint waypoint in path)
 		{
-			print("Visiting " + waypoint.name);
 			transform.position = waypoint.transform.position;
 			yield return new WaitForSeconds(1f);
 		}
-		print("Ending patrol");
 	}
 }
