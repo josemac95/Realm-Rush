@@ -26,4 +26,11 @@ public class Waypoint : MonoBehaviour
 			);
 		}
 	}
+
+	// Establece el color de la parte de arriba del cubo
+	public void SetTopColor(Color color)
+	{
+		var top = transform.Find("Top");
+		top.GetComponent<MeshRenderer>().material.color = color;
+	}
 }
