@@ -9,11 +9,19 @@ public class Pathfinder : MonoBehaviour
 	// Inicio y fin del camino
 	[SerializeField] Waypoint startWaypoint = null;
 	[SerializeField] Waypoint endWaypoint = null;
+	// Direcciones de movimiento
+	Vector2Int[] directions = {
+		Vector2Int.up,
+		Vector2Int.right,
+		Vector2Int.down,
+		Vector2Int.left
+	};
 
 	void Start()
 	{
 		LoadBlocks();
 		ColorStartAndEnd();
+		ExploreNeighbours();
 	}
 
 	// Carga los bloques de la cuadrícula
@@ -40,5 +48,18 @@ public class Pathfinder : MonoBehaviour
 	{
 		startWaypoint.SetTopColor(Color.green);
 		endWaypoint.SetTopColor(Color.red);
+	}
+
+	// Explora los vecinos
+	private void ExploreNeighbours()
+	{
+		foreach (Vector2Int dir in directions)
+		{
+			Vector2Int exploration = startWaypoint.GridPos + dir;
+			if (grid.ContainsKey(exploration))
+			{
+				grid[exploration].SetTopColor(Color.blue);
+			}
+		}
 	}
 }
