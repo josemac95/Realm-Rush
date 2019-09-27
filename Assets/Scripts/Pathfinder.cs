@@ -6,9 +6,14 @@ public class Pathfinder : MonoBehaviour
 {
 	// Diccionario
 	Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
+
+	// Cola
+	Queue<Waypoint> queue = new Queue<Waypoint>();
+
 	// Inicio y fin del camino
 	[SerializeField] Waypoint startWaypoint = null;
 	[SerializeField] Waypoint endWaypoint = null;
+
 	// Direcciones de movimiento
 	Vector2Int[] directions = {
 		Vector2Int.up,
@@ -17,11 +22,14 @@ public class Pathfinder : MonoBehaviour
 		Vector2Int.left
 	};
 
+	// Si el algoritmo de búsqueda debe parar
+	bool stop = false;
+
 	void Start()
 	{
 		LoadBlocks();
 		ColorStartAndEnd();
-		ExploreNeighbours();
+		Pathfinding();
 	}
 
 	// Carga los bloques de la cuadrícula
@@ -50,16 +58,64 @@ public class Pathfinder : MonoBehaviour
 		endWaypoint.SetTopColor(Color.red);
 	}
 
-	// Explora los vecinos
-	private void ExploreNeighbours()
+	// Encuentra el camino
+	private void Pathfinding()
 	{
+		queue.Enqueue(startWaypoint);
+		// Bucle de búsqueda
+		while (!stop && queue.Count > 0)
+		{
+			// Centro de la búsqueda
+			var searchCenter = queue.Dequeue();
+			// Comprobación de parada
+			Stop(searchCenter);
+			// Explora los vecinos
+			ExploreNeighbours(searchCenter);
+			// Explorado
+			searchCenter.IsExplored = true;
+			// TODO remove print
+			print("cola");
+			foreach (Waypoint q in queue)
+				print(q.name);
+		}
+	}
+
+	// Condiciones de parada
+	private void Stop(Waypoint searchCenter)
+	{
+		if (searchCenter == endWaypoint)
+		{
+			stop = true;
+		}
+	}
+
+	// Explora los vecinos
+	private void ExploreNeighbours(Waypoint searchCenter)
+	{
+		// Si ha parado
+		if (stop) return;
+		// Si no, busca los vecinos en las direcciones
 		foreach (Vector2Int dir in directions)
 		{
-			Vector2Int exploration = startWaypoint.GridPos + dir;
-			if (grid.ContainsKey(exploration))
+			Vector2Int explorationPos = searchCenter.GridPos + dir;
+			// Si existe el vecino
+			if (grid.ContainsKey(explorationPos))
 			{
-				grid[exploration].SetTopColor(Color.blue);
+				Waypoint neighbour = grid[explorationPos];
+				QueueNeighbour(neighbour);
 			}
+		}
+	}
+
+	// Encola el vecino
+	private void QueueNeighbour(Waypoint neighbour)
+	{
+		// Si no está explorado y no está ya en la cola
+		if (!neighbour.IsExplored && !queue.Contains(neighbour))
+		{
+			neighbour.SetTopColor(Color.blue);
+			// Añade a la cola
+			queue.Enqueue(neighbour);
 		}
 	}
 }

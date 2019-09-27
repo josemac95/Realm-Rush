@@ -5,13 +5,13 @@ using UnityEngine;
 public class Waypoint : MonoBehaviour
 {
 	// Tamaño de la cuadrícula
-	const int gridSize = 10;
+	const int _gridSize = 10;
 
 	public int GridSize
 	{
 		get
 		{
-			return gridSize;
+			return _gridSize;
 		}
 	}
 
@@ -24,6 +24,21 @@ public class Waypoint : MonoBehaviour
 				Mathf.RoundToInt(transform.position.x / GridSize),
 				Mathf.RoundToInt(transform.position.z / GridSize)
 			);
+		}
+	}
+
+	// Está explorado
+	bool _isExplored = false;
+
+	public bool IsExplored
+	{
+		get
+		{
+			return _isExplored;
+		}
+		set
+		{
+			_isExplored = value;
 		}
 	}
 
