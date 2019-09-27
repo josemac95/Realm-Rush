@@ -28,11 +28,19 @@ public class Pathfinder : MonoBehaviour
 	// Si el algoritmo de búsqueda debe parar
 	bool stop = false;
 
-	void Start()
+	// Camino (propiedad)
+	List<Waypoint> _path = new List<Waypoint>();
+
+	public List<Waypoint> Path
 	{
-		LoadBlocks();
-		ColorStartAndEnd();
-		Pathfinding();
+		get
+		{
+			LoadBlocks();
+			BreadthFirstSearch();
+			CreatePath(endWaypoint);
+			ColorPath();
+			return _path;
+		}
 	}
 
 	// Carga los bloques de la cuadrícula
@@ -54,15 +62,8 @@ public class Pathfinder : MonoBehaviour
 		}
 	}
 
-	// Cambia el color del inicio y del fin
-	private void ColorStartAndEnd()
-	{
-		startWaypoint.SetTopColor(Color.green);
-		endWaypoint.SetTopColor(Color.red);
-	}
-
-	// Encuentra el camino
-	private void Pathfinding()
+	// Encuentra el camino (búsqueda primero en anchura)
+	private void BreadthFirstSearch()
 	{
 		queue.Enqueue(startWaypoint);
 		// Bucle de búsqueda
@@ -76,12 +77,7 @@ public class Pathfinder : MonoBehaviour
 			ExploreNeighbours();
 			// Explorado
 			searchCenter.IsExplored = true;
-			// TODO remove print
-			print("cola");
-			foreach (Waypoint q in queue)
-				print(q.name + "from " + q.ExploredFrom.name);
 		}
-
 	}
 
 	// Condiciones de parada
@@ -122,5 +118,32 @@ public class Pathfinder : MonoBehaviour
 			// Indica el origen de exploración
 			neighbour.ExploredFrom = searchCenter;
 		}
+	}
+
+	// Obtiene el camino
+	private void CreatePath(Waypoint waypoint)
+	{
+		// Añade el waypoint
+		_path.Add(waypoint);
+		// Si es el inicio
+		if (waypoint == startWaypoint)
+		{
+			// Da la vuelta a la lista
+			_path.Reverse();
+			return;
+		}
+		// Llamada recursiva
+		CreatePath(waypoint.ExploredFrom);
+	}
+
+	// Cambia el color del camino
+	private void ColorPath()
+	{
+		foreach (Waypoint waypoint in _path)
+		{
+			waypoint.SetTopColor(Color.blue);
+		}
+		startWaypoint.SetTopColor(Color.green);
+		endWaypoint.SetTopColor(Color.red);
 	}
 }
