@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-	[SerializeField] float amountOfMovement = 0.1f;
+	[SerializeField] float timeStopped = 0.5f;
+	[SerializeField] float amountOfMovement = 0.5f;
 
 	void Start()
 	{
@@ -20,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
 			// Espera a que termine la corrutina
 			yield return StartCoroutine(MoveTowardsWaypoint(waypoint));
 			// Espera en el waypoint
-			yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(timeStopped);
 		}
 	}
 
