@@ -14,6 +14,9 @@ public class Pathfinder : MonoBehaviour
 	[SerializeField] Waypoint startWaypoint = null;
 	[SerializeField] Waypoint endWaypoint = null;
 
+	// Centro actual de la búsqueda
+	Waypoint searchCenter = null;
+
 	// Direcciones de movimiento
 	Vector2Int[] directions = {
 		Vector2Int.up,
@@ -66,22 +69,23 @@ public class Pathfinder : MonoBehaviour
 		while (!stop && queue.Count > 0)
 		{
 			// Centro de la búsqueda
-			var searchCenter = queue.Dequeue();
+			searchCenter = queue.Dequeue();
 			// Comprobación de parada
-			Stop(searchCenter);
+			Stop();
 			// Explora los vecinos
-			ExploreNeighbours(searchCenter);
+			ExploreNeighbours();
 			// Explorado
 			searchCenter.IsExplored = true;
 			// TODO remove print
 			print("cola");
 			foreach (Waypoint q in queue)
-				print(q.name);
+				print(q.name + "from " + q.ExploredFrom.name);
 		}
+
 	}
 
 	// Condiciones de parada
-	private void Stop(Waypoint searchCenter)
+	private void Stop()
 	{
 		if (searchCenter == endWaypoint)
 		{
@@ -90,7 +94,7 @@ public class Pathfinder : MonoBehaviour
 	}
 
 	// Explora los vecinos
-	private void ExploreNeighbours(Waypoint searchCenter)
+	private void ExploreNeighbours()
 	{
 		// Si ha parado
 		if (stop) return;
@@ -113,9 +117,10 @@ public class Pathfinder : MonoBehaviour
 		// Si no está explorado y no está ya en la cola
 		if (!neighbour.IsExplored && !queue.Contains(neighbour))
 		{
-			neighbour.SetTopColor(Color.blue);
 			// Añade a la cola
 			queue.Enqueue(neighbour);
+			// Indica el origen de exploración
+			neighbour.ExploredFrom = searchCenter;
 		}
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-	// Tamaño de la cuadrícula
+	// Tamaño de la cuadrícula (propiedad)
 	const int _gridSize = 10;
 
 	public int GridSize
@@ -15,7 +15,7 @@ public class Waypoint : MonoBehaviour
 		}
 	}
 
-	// Posición ajustada en la cuadrícula
+	// Posición ajustada en la cuadrícula (propiedad)
 	public Vector2Int GridPos
 	{
 		get
@@ -27,7 +27,7 @@ public class Waypoint : MonoBehaviour
 		}
 	}
 
-	// Está explorado
+	// Está explorado (propiedad)
 	bool _isExplored = false;
 
 	public bool IsExplored
@@ -39,6 +39,21 @@ public class Waypoint : MonoBehaviour
 		set
 		{
 			_isExplored = value;
+		}
+	}
+
+	// Waypoint desde donde se ha explorado
+	Waypoint _exploredFrom = null;
+
+	public Waypoint ExploredFrom
+	{
+		get
+		{
+			return _exploredFrom;
+		}
+		set
+		{
+			_exploredFrom = value;
 		}
 	}
 
