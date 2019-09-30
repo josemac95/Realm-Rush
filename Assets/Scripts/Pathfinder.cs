@@ -35,12 +35,21 @@ public class Pathfinder : MonoBehaviour
 	{
 		get
 		{
-			LoadBlocks();
-			BreadthFirstSearch();
-			CreatePath(endWaypoint);
-			ColorPath();
+			if (_path.Count == 0)
+			{
+				CalculatePath();
+			}
 			return _path;
 		}
+	}
+
+	// Calcula el camino
+	private void CalculatePath()
+	{
+		LoadBlocks();
+		BreadthFirstSearch();
+		CreatePath(endWaypoint);
+		ColorPath();
 	}
 
 	// Carga los bloques de la cuadrícula
