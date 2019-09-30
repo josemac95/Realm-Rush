@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1668795338458632957}
   - component: {fileID: 1661047430256075045}
   - component: {fileID: 7987445754660972303}
+  - component: {fileID: 6358079682682592318}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -93,3 +94,18 @@ MonoBehaviour:
   timeStopped: 0.5
   amountOfMovement: 0.5
   amountOfRotation: 0.05
+--- !u!114 &6358079682682592318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682682759881300209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f843734b7acc0884bbe81ab5ed96c239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathFX: {fileID: 0}
+  parent: {fileID: 0}
+  hits: 10
