@@ -15,6 +15,9 @@ public class CubeEditor : MonoBehaviour
 	// Waypoint
 	Waypoint waypoint;
 
+	// Si oculta la etiqueta
+	[SerializeField] bool hideLabel = true;
+
 	void Awake()
 	{
 		waypoint = GetComponent<Waypoint>();
@@ -40,7 +43,14 @@ public class CubeEditor : MonoBehaviour
 		TextMesh textMesh = GetComponentInChildren<TextMesh>();
 		// Actualiza el texto
 		string label = waypoint.GridPos.x + "," + waypoint.GridPos.y;
-		textMesh.text = label;
+		if (hideLabel)
+		{
+			textMesh.text = "";
+		}
+		else
+		{
+			textMesh.text = label;
+		}
 		// Actualiza el nombre del objeto
 		gameObject.name = "Cube " + label;
 	}

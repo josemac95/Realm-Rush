@@ -58,8 +58,10 @@ public class Waypoint : MonoBehaviour
 	}
 
 	// Establece el color de la parte de arriba del cubo
+	// Utilizado en el modo test (Lab scene)
 	public void SetTopColor(Color color)
 	{
+		// Busca en los hijos del objeto
 		var top = transform.Find("Top");
 		if (top != null)
 		{
