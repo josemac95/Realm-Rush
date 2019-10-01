@@ -57,6 +57,21 @@ public class Waypoint : MonoBehaviour
 		}
 	}
 
+	// Se puede construir encima (propiedad)
+	bool _isPlaceable = true;
+
+	public bool IsPlaceable
+	{
+		get
+		{
+			return _isPlaceable;
+		}
+		set
+		{
+			_isPlaceable = value;
+		}
+	}
+
 	// Establece el color de la parte de arriba del cubo
 	// Utilizado en el modo test (Lab scene)
 	public void SetTopColor(Color color)
@@ -66,6 +81,28 @@ public class Waypoint : MonoBehaviour
 		if (top != null)
 		{
 			top.GetComponent<MeshRenderer>().material.color = color;
+		}
+	}
+
+	// Prefab de la torre
+	[SerializeField] Tower towerPrefab = null;
+	// Contador de torres (static para toda la clase)
+	static int towerCounter = 1;
+
+	// Detecta si el ratón está encima
+	void OnMouseOver()
+	{
+		if (Input.GetMouseButtonDown(0) && _isPlaceable)
+		{
+			// Crea la torre (en la posición del waypoint)
+			GameObject newTower = Instantiate(towerPrefab.gameObject, transform.position, Quaternion.identity);
+			// Lo agrupa con el padre
+			//newTower.transform.parent = transform;
+			// Cambia el nombre
+			newTower.name = "Tower " + towerCounter;
+			towerCounter++;
+			// Ya no permite poner más torres
+			_isPlaceable = false;
 		}
 	}
 }

@@ -77,7 +77,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6021395166321147924}
-  m_Text: 0,0
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 0.03
   m_LineSpacing: 1
@@ -102,8 +102,9 @@ GameObject:
   - component: {fileID: 6021395166998943543}
   - component: {fileID: 6021395166998943496}
   - component: {fileID: 6021395166998943497}
+  - component: {fileID: 7349993871016653195}
   m_Layer: 0
-  m_Name: Cube 0,0
+  m_Name: Neutral Waypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,6 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae2a021fb9033c4695ade6b64626b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerPrefab: {fileID: -7789450215030709275, guid: 344c7b9e1c2d5974b8baaf81426137d1,
+    type: 3}
+  towerParent: {fileID: 0}
 --- !u!114 &6021395166998943497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +153,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0852162f0312ec648a41160cce25e3cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hideLabel: 1
+--- !u!65 &7349993871016653195
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6021395166998943498}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 12.5, z: 10}
+  m_Center: {x: 0, y: -3.75, z: 0}
 --- !u!1001 &6839545958759023234
 PrefabInstance:
   m_ObjectHideFlags: 0

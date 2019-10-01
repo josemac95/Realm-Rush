@@ -134,6 +134,7 @@ public class Pathfinder : MonoBehaviour
 	{
 		// Añade el waypoint
 		_path.Add(waypoint);
+		waypoint.IsPlaceable = false;
 		// Si es el inicio
 		if (waypoint == startWaypoint)
 		{
