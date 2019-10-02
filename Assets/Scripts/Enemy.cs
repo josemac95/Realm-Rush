@@ -6,22 +6,10 @@ public class Enemy : MonoBehaviour
 {
 	// Vida (en número de impactos)
 	[SerializeField] int hits = 10;
-
-	void Start()
-	{
-		// Añade el componente via script
-		// Colisiones con partículas
-		AddNonTriggerBoxCollider();
-	}
-
-	// Añade el collider (No trigger)
-	private void AddNonTriggerBoxCollider()
-	{
-		Collider boxCollider = gameObject.AddComponent<BoxCollider>();
-		// Por defecto es así, pero es mejor asegurarse
-		// Porque es importante para el funcionamiento
-		boxCollider.isTrigger = false;
-	}
+	// Partículas de colisión
+	[SerializeField] ParticleSystem hitFX = null;
+	// Partículas de muerte
+	[SerializeField] ParticleSystem deathFX = null;
 
 	// Si choca una partícula con el objeto
 	void OnParticleCollision(GameObject other)
@@ -41,6 +29,8 @@ public class Enemy : MonoBehaviour
 	// Procesa el impacto
 	private void ProcessHit()
 	{
+		// Partículas de colisión
+		hitFX.Play();
 		// Queda menos vida
 		hits = hits - 1;
 	}
@@ -48,6 +38,9 @@ public class Enemy : MonoBehaviour
 	// Mata al enemigo
 	private void KillEnemy()
 	{
+		// Efecto de muerte (instancia el prefab)
+		var fx = Instantiate(deathFX, transform.position, Quaternion.identity);
+		fx.Play();
 		// Destruye el enemigo
 		Destroy(gameObject);
 	}

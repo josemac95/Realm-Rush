@@ -95,9 +95,7 @@ public class Waypoint : MonoBehaviour
 		if (Input.GetMouseButtonDown(0) && _isPlaceable)
 		{
 			// Crea la torre (en la posición del waypoint)
-			GameObject newTower = Instantiate(towerPrefab.gameObject, transform.position, Quaternion.identity);
-			// Lo agrupa con el padre
-			//newTower.transform.parent = transform;
+			var newTower = Instantiate(towerPrefab, transform.position, Quaternion.identity);
 			// Cambia el nombre
 			newTower.name = "Tower " + towerCounter;
 			towerCounter++;

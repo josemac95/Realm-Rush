@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
 		while (true)
 		{
 			// Crea el enemigo (en la posición del spawner - padre)
-			GameObject newEnemy = Instantiate(enemyPrefab.gameObject, transform.position, Quaternion.identity);
+			var newEnemy = Instantiate(enemyPrefab, transform.position, enemyPrefab.transform.rotation);
 			// Lo agrupa con el padre
 			newEnemy.transform.parent = transform;
 			// Cambia el nombre
