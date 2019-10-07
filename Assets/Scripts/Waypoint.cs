@@ -84,23 +84,20 @@ public class Waypoint : MonoBehaviour
 		}
 	}
 
-	// Prefab de la torre
-	[SerializeField] Tower towerPrefab = null;
-	// Contador de torres (static para toda la clase)
-	static int towerCounter = 1;
+	// Fábrica de torres
+	TowerFactory towerFactory;
+
+	void Start()
+	{
+		towerFactory = FindObjectOfType<TowerFactory>();
+	}
 
 	// Detecta si el ratón está encima
 	void OnMouseOver()
 	{
 		if (Input.GetMouseButtonDown(0) && _isPlaceable)
 		{
-			// Crea la torre (en la posición del waypoint)
-			var newTower = Instantiate(towerPrefab, transform.position, Quaternion.identity);
-			// Cambia el nombre
-			newTower.name = "Tower " + towerCounter;
-			towerCounter++;
-			// Ya no permite poner más torres
-			_isPlaceable = false;
+			towerFactory.AddTower(this);
 		}
 	}
 }
