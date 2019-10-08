@@ -4765,7 +4765,7 @@ GameObject:
   - component: {fileID: 198215428582040142}
   - component: {fileID: 199113155619613730}
   m_Layer: 0
-  m_Name: Blue Spray
+  m_Name: Orange Spray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9461,7 +9461,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 19814f35f21b5834ab03c4b11e23d923, type: 2}
+  - {fileID: 2100000, guid: bedfd6948c9dfd04283406fca21e4a08, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -14271,7 +14271,7 @@ GameObject:
   - component: {fileID: 198614261362037272}
   - component: {fileID: 199143583539381130}
   m_Layer: 0
-  m_Name: Blue Chunks
+  m_Name: Orange Chunks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14427,8 +14427,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 20
-      minScalar: 10
+      scalar: 40
+      minScalar: 20
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -18967,7 +18967,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3a814b4e0cb3c4b7ba0d0fb88c3d3c93, type: 2}
+  - {fileID: 2100000, guid: e448f465e6df708448dad36d11303987, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -19024,7 +19024,7 @@ GameObject:
   - component: {fileID: 198537984209914932}
   - component: {fileID: 199362987947312204}
   m_Layer: 0
-  m_Name: Enemy Death Particles
+  m_Name: Enemy Goal Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

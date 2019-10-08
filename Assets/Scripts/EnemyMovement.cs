@@ -10,6 +10,8 @@ public class EnemyMovement : MonoBehaviour
 	[SerializeField] float amountOfMovement = 0.5f;
 	// Cantidad de rotación por frame
 	[SerializeField] float amountOfRotation = 0.05f;
+	// Partículas del enemigo al llegar a la meta
+	[SerializeField] ParticleSystem goalFX = null;
 
 
 	void Start()
@@ -32,6 +34,7 @@ public class EnemyMovement : MonoBehaviour
 			// Espera en el waypoint
 			yield return new WaitForSeconds(timeStopped);
 		}
+		Goal();
 	}
 
 	// Movimiento hacia un waypoint suave
@@ -62,5 +65,16 @@ public class EnemyMovement : MonoBehaviour
 			// Espera al siguiente frame
 			yield return null;
 		}
+	}
+
+	// Desaparece cuando llega al objetivo
+	private void Goal()
+	{
+		// Efecto de muerte (instancia el prefab)
+		var fx = Instantiate(goalFX, transform.position, Quaternion.identity);
+		fx.Play();
+		fx.transform.parent = gameObject.GetComponent<Enemy>().FXParent;
+		// Destruye el enemigo
+		Destroy(gameObject);
 	}
 }

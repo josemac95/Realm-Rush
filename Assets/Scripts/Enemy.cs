@@ -16,6 +16,10 @@ public class Enemy : MonoBehaviour
 
 	public Transform FXParent
 	{
+		get
+		{
+			return _FXParent;
+		}
 		set
 		{
 			_FXParent = value;
@@ -40,8 +44,10 @@ public class Enemy : MonoBehaviour
 	// Procesa el impacto
 	private void ProcessHit()
 	{
-		// Partículas de colisión
-		hitFX.Play();
+		// Partículas de colisión (instancia el prefab)
+		var fx = Instantiate(hitFX, transform.position, Quaternion.identity);
+		fx.Play();
+		fx.transform.parent = _FXParent;
 		// Queda menos vida
 		hits = hits - 1;
 	}
