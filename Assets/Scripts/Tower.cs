@@ -13,6 +13,21 @@ public class Tower : MonoBehaviour
 	// Rango de la torre
 	[SerializeField] float attackRange = 10f;
 
+	// Waypoint sobre el que está (propiedad)
+	Waypoint _position = null;
+
+	public Waypoint Position
+	{
+		get
+		{
+			return _position;
+		}
+		set
+		{
+			_position = value;
+		}
+	}
+
 	void Update()
 	{
 		// Selecciona el enemigo más cercano

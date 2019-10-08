@@ -6,21 +6,22 @@ public class TowerFactory : MonoBehaviour
 {
 	// Prefab de la torre
 	[SerializeField] Tower towerPrefab = null;
-	// Contador de torres
-	int towerCounter = 1;
 	// Máximo número de torres
-	int towerLimit = 5;
+	[SerializeField] int towerLimit = 5;
+
+	// Cola de torres
+	Queue<Tower> towers = new Queue<Tower>();
 
 	// Añade nuevas torres
 	public void AddTower(Waypoint waypoint)
 	{
-		if (towerCounter <= towerLimit)
+		if (towers.Count < towerLimit)
 		{
 			InstantiateTower(waypoint);
 		}
 		else
 		{
-			//MoveTower(waypoint);
+			MoveTower(waypoint);
 		}
 	}
 
@@ -30,11 +31,30 @@ public class TowerFactory : MonoBehaviour
 		// Crea la torre (en la posición del waypoint)
 		var newTower = Instantiate(towerPrefab, waypoint.transform.position, Quaternion.identity);
 		// Cambia el nombre
-		newTower.name = "Tower " + towerCounter;
-		towerCounter++;
+		newTower.name = "Tower " + (towers.Count + 1);
 		// Agrupa las torres
 		newTower.transform.parent = transform;
 		// Ya no permite poner más torres en esa posición
 		waypoint.IsPlaceable = false;
+		// Establece la nueva posición
+		newTower.Position = waypoint;
+		// Añade a la cola
+		towers.Enqueue(newTower);
+	}
+
+	// Mueve una torre a la posición nueva
+	private void MoveTower(Waypoint newWaypoint)
+	{
+		// Torre que tiene que moverse
+		Tower tower = towers.Dequeue();
+		// Su waypoint vuelve a estar disponible
+		tower.Position.IsPlaceable = true;
+		// Ya no permite poner más torres en esa posición
+		newWaypoint.IsPlaceable = false;
+		// Establece la nueva posición
+		tower.Position = newWaypoint;
+		tower.transform.position = newWaypoint.transform.position;
+		// Añade a la cola
+		towers.Enqueue(tower);
 	}
 }

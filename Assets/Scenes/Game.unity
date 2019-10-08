@@ -2318,6 +2318,7 @@ MonoBehaviour:
   timeBetweenSpawns: 2
   enemyPrefab: {fileID: 2049608920922511610, guid: b8f46b66eb4f92042b06a91e7ae3e4f5,
     type: 3}
+  FXParent: {fileID: 2146022113}
 --- !u!1 &1236446514
 GameObject:
   m_ObjectHideFlags: 0
@@ -4458,6 +4459,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2115788089}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2146022112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2146022113}
+  m_Layer: 0
+  m_Name: FXs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2146022113
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146022112}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3934896400717138908
 PrefabInstance:
   m_ObjectHideFlags: 0

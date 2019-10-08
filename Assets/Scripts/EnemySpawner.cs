@@ -9,6 +9,9 @@ public class EnemySpawner : MonoBehaviour
 	// Prefab del enemigo
 	[SerializeField] Enemy enemyPrefab = null;
 
+	// Padre de los efectos de partículas del enemigo
+	[SerializeField] Transform FXParent = null;
+
 	void Start()
 	{
 		StartCoroutine(SpawnEnemies());
@@ -22,6 +25,7 @@ public class EnemySpawner : MonoBehaviour
 		{
 			// Crea el enemigo (en la posición del spawner - padre)
 			var newEnemy = Instantiate(enemyPrefab, transform.position, enemyPrefab.transform.rotation);
+			newEnemy.FXParent = FXParent;
 			// Lo agrupa con el padre
 			newEnemy.transform.parent = transform;
 			// Cambia el nombre

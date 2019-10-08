@@ -11,6 +11,17 @@ public class Enemy : MonoBehaviour
 	// Partículas de muerte
 	[SerializeField] ParticleSystem deathFX = null;
 
+	// Padre para los efectos (propiedad)
+	Transform _FXParent = null;
+
+	public Transform FXParent
+	{
+		set
+		{
+			_FXParent = value;
+		}
+	}
+
 	// Si choca una partícula con el objeto
 	void OnParticleCollision(GameObject other)
 	{
@@ -41,6 +52,7 @@ public class Enemy : MonoBehaviour
 		// Efecto de muerte (instancia el prefab)
 		var fx = Instantiate(deathFX, transform.position, Quaternion.identity);
 		fx.Play();
+		fx.transform.parent = _FXParent;
 		// Destruye el enemigo
 		Destroy(gameObject);
 	}
