@@ -1,13 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; // Para la UI
 
 public class PlayerHealth : MonoBehaviour
 {
 	// Vida de la base
-	[SerializeField] int health = 2;
+	[SerializeField] int health = 10;
 	// Puntos de vida que quita por enemigo
 	[SerializeField] int healthDecrease = 1;
+
+	// Texto de la vida
+	[SerializeField] Text healthText = null;
+
+	void Start()
+	{
+		healthText.text = health.ToString();
+	}
 
 	// Si entra un enemigo
 	void OnTriggerEnter(Collider other)
@@ -29,6 +38,8 @@ public class PlayerHealth : MonoBehaviour
 	{
 		// Queda menos vida
 		health = health - healthDecrease;
+		// Actualiza la interfaz
+		healthText.text = health.ToString();
 	}
 
 	// Fin del juego
