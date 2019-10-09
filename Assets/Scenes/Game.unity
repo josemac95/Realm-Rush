@@ -3857,7 +3857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6226415, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.8679245, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8008,6 +8008,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1908335042}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1938963329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3407666914288804482, guid: e03a5ad6e6c37b743b4bbd687af02dc3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3934896400717138908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1938963330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938963329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 1559dd20f9aeb5f47967db3c2240b290, type: 2}
 --- !u!1001 &1987123653
 PrefabInstance:
   m_ObjectHideFlags: 0
