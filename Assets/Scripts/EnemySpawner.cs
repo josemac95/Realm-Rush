@@ -13,6 +13,9 @@ public class EnemySpawner : MonoBehaviour
 	// Padre de los efectos de partículas del enemigo
 	[SerializeField] Transform FXParent = null;
 
+	// Efecto de sonido de spawn
+	[SerializeField] AudioClip spawnSFX = null;
+
 	// Número de enemigos
 	int counter = 0;
 
@@ -30,6 +33,8 @@ public class EnemySpawner : MonoBehaviour
 	{
 		while (true)
 		{
+			// Sonido de spawn
+			gameObject.GetComponent<AudioSource>().PlayOneShot(spawnSFX);
 			// Crea el enemigo (en la posición del spawner - padre)
 			var newEnemy = Instantiate(enemyPrefab, transform.position, enemyPrefab.transform.rotation);
 			newEnemy.FXParent = FXParent;

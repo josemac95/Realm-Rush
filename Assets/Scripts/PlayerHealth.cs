@@ -13,6 +13,9 @@ public class PlayerHealth : MonoBehaviour
 	// Texto de la vida
 	[SerializeField] Text healthText = null;
 
+	// Efecto de sonido de llegada del enemigo
+	[SerializeField] AudioClip enemySFX = null;
+
 	void Start()
 	{
 		healthText.text = health.ToString();
@@ -36,6 +39,8 @@ public class PlayerHealth : MonoBehaviour
 	// Procesa el impacto
 	private void ProcessHit()
 	{
+		// Sonido de llegada del enemigo
+		gameObject.GetComponent<AudioSource>().PlayOneShot(enemySFX);
 		// Queda menos vida
 		health = health - healthDecrease;
 		// Actualiza la interfaz
