@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.PostProcessing;
+// Resuelve un error de ambigüedad
+using MinAttribute = UnityEngine.PostProcessing.MinAttribute;
 
 namespace UnityEditor.PostProcessing
 {
