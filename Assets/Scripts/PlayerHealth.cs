@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // Para la UI
+using UnityEngine.SceneManagement; // Para la carga de escenas
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -12,9 +13,14 @@ public class PlayerHealth : MonoBehaviour
 
 	// Texto de la vida
 	[SerializeField] Text healthText = null;
+	// Texto fin del juego
+	[SerializeField] Text gameOverText = null;
 
 	// Efecto de sonido de llegada del enemigo
 	[SerializeField] AudioClip enemySFX = null;
+
+	// Tiempo de carga de la escena
+	float loadTime = 2f;
 
 	void Start()
 	{
@@ -50,6 +56,13 @@ public class PlayerHealth : MonoBehaviour
 	// Fin del juego
 	private void GameOver()
 	{
-		print("FIN");
+		gameOverText.enabled = true;
+		Invoke("LoadScene", loadTime);
+	}
+
+	// Carga la escena
+	private void LoadScene()
+	{
+		SceneManager.LoadScene(0);
 	}
 }

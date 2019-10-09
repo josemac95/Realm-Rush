@@ -7,7 +7,7 @@ public class TowerFactory : MonoBehaviour
 	// Prefab de la torre
 	[SerializeField] Tower towerPrefab = null;
 	// Máximo número de torres
-	[SerializeField] int towerLimit = 5;
+	[SerializeField] int towerLimit = 3;
 
 	// Cola de torres
 	Queue<Tower> towers = new Queue<Tower>();
